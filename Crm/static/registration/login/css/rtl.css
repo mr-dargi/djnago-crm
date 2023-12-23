@@ -1,0 +1,39 @@
+/* Genral css style */
+body {
+  height: 100vh;
+}
+
+/* Change a display of login form */
+.form-group .label {
+  display: flex;
+}
+
+.ftco-section {
+  padding: 0 !important;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.login-wrap {
+  direction: rtl;
+}
+
+.login-submit-button {
+  background-color: #fbbe28;
+  color: #ffffff;
+} 
+
+.errors {
+  direction: rtl;
+  display: flex;
+  color: red;
+  background-color: #ffadad;
+  padding: 20px 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  .wrap {
+    height: 500px;
+  }
+}

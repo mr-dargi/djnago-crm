@@ -1,0 +1,130 @@
+body {
+  text-align: right !important;
+  direction: rtl !important;
+}
+
+.header-menu {
+  display: flex !important;
+}
+
+.menutoggle {
+  margin: -2px -55px 0 20px;
+}
+
+ul.nav.navbar-nav {
+  padding: 0 !important;
+}
+
+.open .menutoggle i:before {
+  content: "\f0a5" !important;
+}
+
+.navbar .navbar-nav li > a .menu-icon {
+  color: #8b939b;
+  float: right !important;
+  margin: 8px 0 8px 8px !important;
+  width: 15px !important;
+  text-align: right;
+  z-index: 9;
+}
+
+.navbar .navbar-nav li.menu-item-has-children a:before {
+  content: "\f104";
+  left: 0 !important;
+  right: initial;
+}
+
+.dropdown-menu {
+  text-align: right;
+}
+
+.navbar .navbar-nav li.menu-item-has-children .sub-menu a .menu-icon {
+  top: 0;
+  text-align: initial;
+  /* margin-left: 8px !important; */
+}
+
+.navbar .navbar-nav li.menu-item-has-children .sub-menu i {
+  position: initial;
+  left: initial;
+  right: 0;
+  top: 0;
+}
+
+.card-body {
+  overflow-x: scroll;
+}
+
+hr {
+  border-top: 1px solid rgb(255 255 255 / 15%);
+}
+
+td {
+  text-align: center !important;
+}
+
+.a_link {
+  color: #007bff !important;
+}
+
+.plus_icon {
+  font-size: 25px;
+  color: rgb(4, 197, 4);
+}
+
+.card-title {
+  margin-top: 5.5px;
+}
+
+label.form-check-label {
+  margin-right: 20px !important;
+}
+
+.form-check-input {
+  margin-top: 0.45rem !important;
+}
+
+/* status dropdown */
+.dropbtn {
+  border: none;
+  cursor: pointer;
+}
+
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #fd9797;
+  color:  rgb(0, 0, 0);
+  border: 1px solid rgb(156, 156, 156);
+  width: 320px;
+  border-radius: 20px;
+  text-align: justify;
+  left: 0;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  padding: 20px;
+}
+
+.dropdown-content p {
+  display: block;
+}
+
+.show {display: block;}
+
+@media screen and (min-width: 680px){
+  .dropdown-content {
+    width: 500px;
+  }
+}
+
+.side-bar-user-name {
+  color: white;
+  padding: 20px 0;
+}

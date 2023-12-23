@@ -1,0 +1,117 @@
+{% extends "crm/base.html" %}
+
+{% load static %}
+{% load humanize %}
+
+{% block main %}
+<div class="content mt-3">
+  <div class="animated fadeIn">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card-header d-flex justify-content-between">
+          <strong class="card-title">دریافت و تایید طراحی</strong>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <table class="table">
+                <thead class="bg-dark text-white">
+                  <tr>
+                    <tr role="row">
+                      <th 
+                          class="sorting_asc text-center" 
+                          tabindex="0" 
+                          aria-controls="bootstrap-data-table-export" 
+                          rowspan="1" 
+                          colspan="1" 
+                          aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                          style="width: auto;">
+                          عنوان پروژه
+                        </th>
+                        <th 
+                          class="sorting_asc text-center" 
+                          tabindex="0" 
+                          aria-controls="bootstrap-data-table-export" 
+                          rowspan="1" 
+                          colspan="1" 
+                          aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                          style="width: auto;">
+                          زمان ثبت اولیه پروژه
+                        </th>
+                        <th 
+                          class="sorting_asc text-center" 
+                          tabindex="0" 
+                          aria-controls="bootstrap-data-table-export" 
+                          rowspan="1" 
+                          colspan="1" 
+                          aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                          style="width: auto;">
+                          وضعیت طراحی
+                        </th>
+                        <th 
+                          class="sorting_asc text-center" 
+                          tabindex="0" 
+                          aria-controls="bootstrap-data-table-export" 
+                          rowspan="1" 
+                          colspan="1" 
+                          aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                          style="width: auto;">
+                          دلیل رد کردن طراحی
+                        </th>
+                        <th 
+                          class="sorting_asc text-center" 
+                          tabindex="0" 
+                          aria-controls="bootstrap-data-table-export" 
+                          rowspan="1" 
+                          colspan="1" 
+                          aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                          style="width: auto;">
+                          ویرایش
+                        </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for project_list in object_list %}
+                    <tr role="row" class="odd">
+                      <td>
+                        {{ project_list.project_title }}
+                      </td>
+                      <td>{{ project_list.jcreate }}</td>
+                      <td>
+                        {% if project_list.confirm_design %}
+                        <i class="fa fa-check-circle" style="color: green"></i>
+                        {% else %}
+                        <i class="fa fa-minus-circle" style="color: red"></i>
+                        {% endif %}
+                      </td>
+                      {% if project_list.description_reject_design %}
+                        <td class="dropdown">
+                          <p class="dropbtn a_link">
+                            {{ project_list.description_reject_design|truncatewords:5 }}
+                          </p>
+                          <p class="dropdown-content myDropdown">
+                            {{ project_list.description_reject_design }}
+                          </p>
+                        </td>
+                        {% else %}
+                        <td>
+                          <p>خالی</p>
+                        </td>
+                      {% endif %}
+                      <td>
+                        <a href="{% url 'crm:projectCreate-stage5' project_list.pk %}">
+                          <span>&#x270f;</span>
+                        </a>
+                      </td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div><!-- .animated -->
+</div>
+{% endblock %}

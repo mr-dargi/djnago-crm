@@ -1,0 +1,88 @@
+<!-- Left Panel -->
+{% load static %}
+<aside id="left-panel" class="left-panel">
+    <nav class="navbar navbar-expand-lg navbar-default">
+
+        <div class="navbar-header">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-menu" aria-controls="main-menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fa fa-bars"></i>
+            </button>
+            <a href="#" class="side-bar-user-name d-block">
+                {% if user.get_full_name %}
+                  {{ user.get_full_name }}
+                {% else %}
+                  {{ user.username }}
+                {% endif %}
+            </a>
+        </div>
+
+        <div id="main-menu" class="main-menu collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>داشبورد</a>
+                </li>
+                <li class="menu-item-has-children dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-laptop"></i>ثبت سفارش</a>
+                    <ul class="sub-menu children dropdown-menu">
+                        <li class="active">
+                            <a href="{% url 'crm:ProjectList-stage1' %}"> <i class="menu-icon fa fa-plus-square-o"></i>۱. تعریف پروژه </a>
+                        </li>
+                        <hr />
+                        <li class="active">
+                            <a href="{% url 'crm:ProjectList-stage2' %}"> <i class="menu-icon fa fa-plus-square-o"></i>۲. دریافت و تایید پرپوزال </a>
+                        </li>
+                        <hr />
+                        <li class="active">
+                            <a href="{% url 'crm:ProjectList-stage3' %}"> <i class="menu-icon fa fa-plus-square-o"></i>۳. ارسال قرار داد و دریافت تاییدیه</a>
+                        </li>
+                        <hr />
+                        <li class="active">
+                            <a href="{% url 'crm:ProjectList-stage4' %}"> <i class="menu-icon fa fa-plus-square-o"></i>۴. ارسال رسید پرداخت و دریافت تاییدیه</a>
+                        </li>
+                        <hr />
+                        <li class="active">
+                            <a href="{% url 'crm:ProjectList-stage5' %}"> <i class="menu-icon fa fa-plus-square-o"></i>۵. دریافت و تایید طراحی</a>
+                        </li>
+                        <hr />
+                        <li class="active">
+                            <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>۶. مشاهده مراحل پیشرفت پروژه</a>
+                        </li>
+                        <hr />
+                    </ul>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-user"></i>پروفایل</a>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-tags"></i>ارسال تیکت</a>
+                </li>
+
+
+                <h3 class="menu-title">پشتیبانی</h3>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>۱. دریافت RFP</a>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>۲. ارسال پرپوزال</a>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>۳. ارسال قرارداد و پیش فاکتور</a>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>۴. دریافت قرارداد و رسید پرداخت</a>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>۵. ثبت پیشرفت پروژه</a>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>پروفایل</a>
+                </li>
+                <li class="active">
+                    <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>ارسال تیکت</a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </nav>
+</aside><!-- /#left-panel -->
+
+<!-- Left Panel -->
