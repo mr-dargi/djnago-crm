@@ -11,7 +11,12 @@ from .mixins import (
                       UpdateFieldStage3Mixin,
                       UpdateFieldStage4Mixin,
                       UpdateFieldStage5Mixin,
-                      customer_ListView,
+                      UpdateFieldStage7Mixin,
+                      UpdateFieldStage8Mixin,
+                      UpdateFieldStage9Mixin,
+                      Customer_ListView,
+                      Genral_listView,
+                      Support_ListView
                     )
 # from django.urls import reverse_lazy
 from django.views.generic import (
@@ -25,32 +30,32 @@ from .models import Project_procedure
 # Create your views here.
 
 # This view will show all the item in the project in one list
-class ProjectList(LoginRequiredMixin, customer_ListView, ListView):
+class ProjectList(LoginRequiredMixin, Genral_listView, ListView):
   template_name = "crm/index.html"
 
 
 # This view will show stage one item that i describe in database model in the list
-class ProjectList_stage1(LoginRequiredMixin, customer_ListView, ListView):
+class ProjectList_stage1(LoginRequiredMixin, Customer_ListView, ListView):
   template_name = "crm/project_listView_stage_1.html"
 
 
 # This view will show stage two item that i describe in database model in the list
-class ProjectList_stage2(LoginRequiredMixin, customer_ListView, ListView):
+class ProjectList_stage2(LoginRequiredMixin, Customer_ListView, ListView):
   template_name = "crm/project_listView_stage_2.html"
 
 
 # This view will show stage four item that i describe in database model in the list
-class ProjectList_stage3(LoginRequiredMixin, customer_ListView, ListView):
+class ProjectList_stage3(LoginRequiredMixin, Customer_ListView, ListView):
   template_name = "crm/project_listView_stage_3.html"
 
 
 # This view will show stage four item that i describe in database model in the list
-class ProjectList_stage4(LoginRequiredMixin, customer_ListView, ListView):
+class ProjectList_stage4(LoginRequiredMixin, Customer_ListView, ListView):
   template_name = "crm/project_listView_stage_4.html"
 
 
 # This view will show stage four item that i describe in database model in the list
-class ProjectList_stage5(LoginRequiredMixin, customer_ListView, ListView):
+class ProjectList_stage5(LoginRequiredMixin, Customer_ListView, ListView):
   template_name = "crm/project_listView_stage_5.html"
 
 
@@ -101,3 +106,35 @@ class ProjectUpdate_stage5(AccessMixin, UpdateFieldStage5Mixin, FormValidMixin, 
   template_name = "crm/project_update_stage_5.html"
 
 
+class ProjectList_stage6(LoginRequiredMixin, Support_ListView, ListView):
+  template_name = "crm/project_listView_stage_6.html"
+
+
+class ProjectList_stage7(LoginRequiredMixin, Support_ListView, ListView):
+  template_name = "crm/project_listView_stage_7.html"
+
+
+class ProjectList_stage8(LoginRequiredMixin, Support_ListView, ListView):
+  template_name = "crm/project_listView_stage_8.html"
+
+
+class ProjectList_stage9(LoginRequiredMixin, Support_ListView, ListView):
+  template_name = "crm/project_listView_stage_9.html"
+
+
+class ProjectUpdate_stage7(AccessMixin, UpdateFieldStage7Mixin, FormValidMixin, UpdateView):
+  model = Project_procedure
+  success_url = reverse_lazy("crm:ProjectList-stage7")
+  template_name = "crm/project_update_stage_7.html"
+
+
+class ProjectUpdate_stage8(AccessMixin, UpdateFieldStage8Mixin, FormValidMixin, UpdateView):
+  model = Project_procedure
+  success_url = reverse_lazy("crm:ProjectList-stage8")
+  template_name = "crm/project_update_stage_8.html"
+
+
+class ProjectUpdate_stage9(AccessMixin, UpdateFieldStage9Mixin, FormValidMixin, UpdateView):
+  model = Project_procedure
+  success_url = reverse_lazy("crm:ProjectList-stage9")
+  template_name = "crm/project_update_stage_9.html"

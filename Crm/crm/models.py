@@ -50,12 +50,14 @@ class Project_procedure(models.Model):
   # description_reject_payment_receipt -> description_reject_payment_receipt model is for the time when support will reject the correctness of payment receipt and support will explain why this payment receipt rejected
   
   # ---------------------------------------- stage 6 -------------------------------------------------------------------- #
-  proposal = models.FileField(upload_to="uploads/proposals", blank=True, null=True, verbose_name="پروپوزال")
+  # this stage just have view
   # ---------------------------------------- stage 7 -------------------------------------------------------------------- #
+  proposal = models.FileField(upload_to="uploads/proposals", blank=True, null=True, verbose_name="پروپوزال")
+  # ---------------------------------------- stage 8 -------------------------------------------------------------------- #
   contract = models.FileField(upload_to="uploads/contract", blank=True, null=True, verbose_name="قرارداد")
   confirm_contract = models.BooleanField(default=False, verbose_name = "وضعیت قرارداد")
   description_reject_contract = models.TextField(blank=True, null=True, verbose_name = "دلیل رد کردن قرارداد")
-  # ---------------------------------------- stage 8 -------------------------------------------------------------------- #
+  # ---------------------------------------- stage 9 -------------------------------------------------------------------- #
   payment = models.FileField(upload_to="uploads/payment", blank=True, null=True, verbose_name="صورت حساب")
   confirm_payment_receipt = models.BooleanField(default=False, verbose_name = "وضعیت رسید پرداخت")
   description_reject_payment_receipt = models.TextField(blank=True, null=True, verbose_name = "دلیل رد کردن رسید پرداخت")

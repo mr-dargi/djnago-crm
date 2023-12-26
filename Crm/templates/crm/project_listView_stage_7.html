@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card-header d-flex justify-content-between">
-          <strong class="card-title">دریافت فاکتور و ارسال رسید پرداخت</strong>
+          <strong class="card-title">ارسال پروپوزال</strong>
         </div>
         <div class="card">
           <div class="card-body">
@@ -17,6 +17,16 @@
                 <thead class="bg-dark text-white">
                   <tr>
                     <tr role="row">
+                      <th 
+                          class="sorting_asc text-center" 
+                          tabindex="0" 
+                          aria-controls="bootstrap-data-table-export" 
+                          rowspan="1" 
+                          colspan="1" 
+                          aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                          style="width: auto;">
+                          نام کاربری مشتری
+                      </th>
                       <th 
                         class="sorting_asc text-center" 
                         tabindex="0" 
@@ -45,7 +55,7 @@
                         colspan="1" 
                         aria-sort="ascending" aria-label="Name: activate to sort column descending" 
                         style="width: auto;">
-                        فاکتور
+                        پرپوزال ارسال شده
                       </th>
                       <th 
                         class="sorting_asc text-center" 
@@ -55,7 +65,7 @@
                         colspan="1" 
                         aria-sort="ascending" aria-label="Name: activate to sort column descending" 
                         style="width: auto;">
-                        رسید پرداخت
+                        وضعیت پروپوزال
                       </th>
                       <th 
                         class="sorting_asc text-center" 
@@ -65,17 +75,7 @@
                         colspan="1" 
                         aria-sort="ascending" aria-label="Name: activate to sort column descending" 
                         style="width: auto;">
-                        وضعیت رسید
-                      </th>
-                      <th 
-                        class="sorting_asc text-center" 
-                        tabindex="0" 
-                        aria-controls="bootstrap-data-table-export" 
-                        rowspan="1" 
-                        colspan="1" 
-                        aria-sort="ascending" aria-label="Name: activate to sort column descending" 
-                        style="width: auto;">
-                        دلیل رد کردن رسید
+                        دلیل رد کردن پروپوزال
                       </th>
                       <th 
                         class="sorting_asc text-center" 
@@ -91,58 +91,49 @@
                 </thead>
                 <tbody>
                   {% for project_list in object_list %}
-                    <tr role="row" class="odd">
+                    <tr>
+                      <td>
+                        {{ project_list.user }}
+                      </td>
                       <td>
                         {{ project_list.project_title }}
                       </td>
-                      <td>{{ project_list.jcreate  }}</td>
+                      <td>{{ project_list.jcreate }}</td>
                       <td>
-                        {% if project_list.payment %}
-                          <a href="{{ BASE_DIR }}/media/{{ project_list.payment }}" class="a_link">
+                        {% if project_list.proposal %}
+                          <a href="{{ BASE_DIR }}/media/{{ project_list.proposal }}" class="a_link">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
                               <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
                               <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
                             </svg>
                           </a>
                         {% else %}
-                          <p>هنوز رسیدی ارسال نشده است.</p>
+                          <p>هنوز پرپوزالی آپلود نکرده اید.</p>
                         {% endif %}
                       </td>
                       <td>
-                        {% if project_list.payment_receipt_image %}
-                          <a href="{{ BASE_DIR }}/media/{{ project_list.payment_receipt_image }}" class="a_link">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                              <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5"/>
-                              <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                            </svg>
-                          </a>
-                        {% else %}
-                          <p>هنوز رسیدی ارسال نشده است.</p>
-                        {% endif %}
-                      </td>
-                      <td>
-                        {% if project_list.confirm_payment_receipt %}
+                        {% if project_list.confirm_proposal %}
                           <i class="fa fa-check-circle" style="color: green"></i>
                         {% else %}
                           <i class="fa fa-minus-circle" style="color: red"></i>
                         {% endif %}
                       </td>
-                      {% if project_list.description_reject_payment_receipt %}
+                      {% if project_list.description_reject_proposal %}
                         <td class="dropdown">
                           <p class="dropbtn a_link">
-                            {{ project_list.description_reject_payment_receipt|truncatewords:5 }}
+                            {{ project_list.description_reject_proposal|truncatewords:5 }}
                           </p>
                           <p class="dropdown-content myDropdown">
-                            {{ project_list.description_reject_payment_receipt }}
+                            {{ project_list.description_reject_proposal }}
                           </p>
                         </td>
                         {% else %}
                         <td>
                           <p>خالی</p>
                         </td>
-                      {% endif %}
+                        {% endif %}
                       <td>
-                        <a href="{% url 'crm:projectCreate-stage4' project_list.pk %}">
+                        <a href="{% url 'crm:projectCreate-stage7' project_list.pk %}" class="a_link">
                           <span>&#x270f;</span>
                         </a>
                       </td>

@@ -53,6 +53,7 @@ ul.nav.navbar-nav {
 
 .card-body {
   overflow-x: scroll;
+  min-height: 500px;
 }
 
 hr {

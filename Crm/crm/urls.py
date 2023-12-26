@@ -6,12 +6,19 @@ from .views import (
                       ProjectList_stage3,
                       ProjectList_stage4,
                       ProjectList_stage5,
+                      ProjectList_stage6,
+                      ProjectList_stage7,
+                      ProjectList_stage8,
+                      ProjectList_stage9,
                       ProjectCreate,
                       ProjectUpdate_stage1,
                       ProjectUpdate_stage2,
                       ProjectUpdate_stage3,
                       ProjectUpdate_stage4,
-                      ProjectUpdate_stage5
+                      ProjectUpdate_stage5,
+                      ProjectUpdate_stage7,
+                      ProjectUpdate_stage8,
+                      ProjectUpdate_stage9,
                     )
 
 app_name = "crm"
@@ -22,10 +29,17 @@ urlpatterns = [
   path("project/list/stage3", ProjectList_stage3.as_view(), name="ProjectList-stage3"),
   path("project/list/stage4", ProjectList_stage4.as_view(), name="ProjectList-stage4"),
   path("project/list/stage5", ProjectList_stage5.as_view(), name="ProjectList-stage5"),
+  path("project/list/stage6", ProjectList_stage6.as_view(), name="ProjectList-stage6"),
+  path("project/list/stage7", ProjectList_stage7.as_view(), name="ProjectList-stage7"),
+  path("project/list/stage8", ProjectList_stage8.as_view(), name="ProjectList-stage8"),
+  path("project/list/stage9", ProjectList_stage9.as_view(), name="ProjectList-stage9"),
   path("project/create", ProjectCreate.as_view(), name="projectCreate"),
   path("project/stage1/<int:pk>", ProjectUpdate_stage1.as_view(), name="projectCreate-stage1"),
   path("project/stage2/<int:pk>", ProjectUpdate_stage2.as_view(), name="projectCreate-stage2"),
   path("project/stage3/<int:pk>", ProjectUpdate_stage3.as_view(), name="projectCreate-stage3"),
   path("project/stage4/<int:pk>", ProjectUpdate_stage4.as_view(), name="projectCreate-stage4"),
   path("project/stage5/<int:pk>", ProjectUpdate_stage5.as_view(), name="projectCreate-stage5"),
+  path("project/stage7/<int:pk>", ProjectUpdate_stage7.as_view(), name="projectCreate-stage7"),
+  path("project/stage8/<int:pk>", ProjectUpdate_stage8.as_view(), name="projectCreate-stage8"),
+  path("project/stage9/<int:pk>", ProjectUpdate_stage9.as_view(), name="projectCreate-stage9"),
 ]

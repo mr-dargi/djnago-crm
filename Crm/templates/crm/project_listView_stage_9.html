@@ -9,7 +9,7 @@
     <div class="row">
       <div class="col-md-12">
         <div class="card-header d-flex justify-content-between">
-          <strong class="card-title">دریافت فاکتور و ارسال رسید پرداخت</strong>
+          <strong class="card-title">ارسال فاکتور و دریافت رسید پرداخت و تایید آن</strong>
         </div>
         <div class="card">
           <div class="card-body">
@@ -17,6 +17,16 @@
                 <thead class="bg-dark text-white">
                   <tr>
                     <tr role="row">
+                      <th 
+                          class="sorting_asc text-center" 
+                          tabindex="0" 
+                          aria-controls="bootstrap-data-table-export" 
+                          rowspan="1" 
+                          colspan="1" 
+                          aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                          style="width: auto;">
+                          نام کاربری مشتری
+                      </th>
                       <th 
                         class="sorting_asc text-center" 
                         tabindex="0" 
@@ -45,7 +55,7 @@
                         colspan="1" 
                         aria-sort="ascending" aria-label="Name: activate to sort column descending" 
                         style="width: auto;">
-                        فاکتور
+                        ارسال فاکتور
                       </th>
                       <th 
                         class="sorting_asc text-center" 
@@ -55,7 +65,7 @@
                         colspan="1" 
                         aria-sort="ascending" aria-label="Name: activate to sort column descending" 
                         style="width: auto;">
-                        رسید پرداخت
+                        دریافت رسید پرداخت
                       </th>
                       <th 
                         class="sorting_asc text-center" 
@@ -65,7 +75,7 @@
                         colspan="1" 
                         aria-sort="ascending" aria-label="Name: activate to sort column descending" 
                         style="width: auto;">
-                        وضعیت رسید
+                        وضعیت رسید پرداخت
                       </th>
                       <th 
                         class="sorting_asc text-center" 
@@ -75,7 +85,7 @@
                         colspan="1" 
                         aria-sort="ascending" aria-label="Name: activate to sort column descending" 
                         style="width: auto;">
-                        دلیل رد کردن رسید
+                        دلیل رد کردن فاکتور
                       </th>
                       <th 
                         class="sorting_asc text-center" 
@@ -91,11 +101,14 @@
                 </thead>
                 <tbody>
                   {% for project_list in object_list %}
-                    <tr role="row" class="odd">
+                    <tr>
+                      <td>
+                        {{ project_list.user }}
+                      </td>
                       <td>
                         {{ project_list.project_title }}
                       </td>
-                      <td>{{ project_list.jcreate  }}</td>
+                      <td>{{ project_list.jcreate }}</td>
                       <td>
                         {% if project_list.payment %}
                           <a href="{{ BASE_DIR }}/media/{{ project_list.payment }}" class="a_link">
@@ -105,7 +118,7 @@
                             </svg>
                           </a>
                         {% else %}
-                          <p>هنوز رسیدی ارسال نشده است.</p>
+                          <p>هنوز فاکتوری آپلود نکرده اید.</p>
                         {% endif %}
                       </td>
                       <td>
@@ -117,7 +130,7 @@
                             </svg>
                           </a>
                         {% else %}
-                          <p>هنوز رسیدی ارسال نشده است.</p>
+                          <p>هنوز رسیدی دریافت نشده.</p>
                         {% endif %}
                       </td>
                       <td>
@@ -140,9 +153,9 @@
                         <td>
                           <p>خالی</p>
                         </td>
-                      {% endif %}
+                        {% endif %}
                       <td>
-                        <a href="{% url 'crm:projectCreate-stage4' project_list.pk %}">
+                        <a href="{% url 'crm:projectCreate-stage9' project_list.pk %}" class="a_link">
                           <span>&#x270f;</span>
                         </a>
                       </td>
