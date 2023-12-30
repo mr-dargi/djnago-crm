@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 # from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
@@ -26,6 +26,9 @@ from django.views.generic import (
                                     UpdateView
                                   )
 from .models import Project_procedure
+from customer.models import Customer
+from account.models import User
+from .forms import ProfileForm
 
 # Create your views here.
 
@@ -138,3 +141,23 @@ class ProjectUpdate_stage9(AccessMixin, UpdateFieldStage9Mixin, FormValidMixin, 
   model = Project_procedure
   success_url = reverse_lazy("crm:ProjectList-stage9")
   template_name = "crm/project_update_stage_9.html"
+
+
+def profile(request):
+    user = request.user
+    instance, created = Customer.objects.get_or_create(customer=user)
+
+    if request.method == 'POST':
+        form = ProfileForm(request.POST, instance=instance)
+
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    else:
+        form = ProfileForm(instance=instance)
+
+    context = {
+        'form': form,
+        'is_create': created,
+    }
+    return render(request, 'crm/profile.html', context)

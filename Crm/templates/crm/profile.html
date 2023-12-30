@@ -1,0 +1,48 @@
+{% extends "crm/base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% load static %}
+
+{% block main %}
+<div class="col-md-12">
+  <!-- general form elements -->
+  <div class="card card-primary">
+    <div class="card-header">
+      <h3 class="card-title mb-0 text-center"></h3>
+    </div>
+    <div class="card-body">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <div class="row">
+          <div class="col-6">
+            {{ form.brand_name|as_crispy_field }}
+          </div>
+          <div class="col-6">
+            {{ form.adress|as_crispy_field }}
+          </div>
+          {% comment %} <div class="col-12">
+            <label class="my-4">گذرواژه: </label>
+            <span>برای تغییر گذرواژه <a href="{% url 'password_change' %}">کلیک</a> کنید.</span>
+          </div> {% endcomment %}
+          <div class="col-6">
+            {{ form.province|as_crispy_field }}
+          </div>
+          <div class="col-6">
+            {{ form.city|as_crispy_field }}
+          </div>
+          {% comment %} <div class="col-6">
+            {{ form.phone|as_crispy_field }}
+          </div> {% endcomment %}
+          {% comment %} <div class="col-6">
+            {{ form.is_manager|as_crispy_field }}
+          </div>
+          <div class="col-6">
+            {{ form.is_customer|as_crispy_field }}
+          </div> {% endcomment %}
+        </div>
+        <button class="btn btn-success">ویرایش اطلاعات</button>
+    </div>
+</div>
+{% endblock %}
