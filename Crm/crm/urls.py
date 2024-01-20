@@ -19,7 +19,8 @@ from .views import (
                       ProjectUpdate_stage7,
                       ProjectUpdate_stage8,
                       ProjectUpdate_stage9,
-                      profile,
+                      customer_profile,
+                      Support_profile,
                     )
 
 app_name = "crm"
@@ -43,5 +44,6 @@ urlpatterns = [
   path("project/stage7/<int:pk>", ProjectUpdate_stage7.as_view(), name="projectCreate-stage7"),
   path("project/stage8/<int:pk>", ProjectUpdate_stage8.as_view(), name="projectCreate-stage8"),
   path("project/stage9/<int:pk>", ProjectUpdate_stage9.as_view(), name="projectCreate-stage9"),
-  path("profile/", profile, name="profile"),
+  path("customer-profile/", customer_profile, name="customer-profile"),
+  path("support-profile/", Support_profile.as_view(), name="support-profile"),
 ]

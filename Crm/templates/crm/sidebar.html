@@ -20,7 +20,7 @@
             <ul class="nav navbar-nav">
                 {% if user.is_customer %}
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>داشبورد</a>
+                        <a href="{% url 'crm:home' %}"> <i class="menu-icon fa fa-dashboard"></i>داشبورد</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -73,7 +73,7 @@
                         </ul>
                     </li>
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-user"></i>پروفایل</a>
+                        <a href="{% url 'crm:customer-profile' %}"> <i class="menu-icon fa fa-user"></i>پروفایل</a>
                     </li>
                     <li class="active">
                         <a href="index.html"> <i class="menu-icon fa fa-tags"></i>ارسال تیکت</a>
@@ -82,7 +82,7 @@
 
                 {% if user.is_manager %}
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>داشبورد</a>
+                        <a href="{% url 'crm:home' %}"> <i class="menu-icon fa fa-dashboard"></i>داشبورد</a>
                     </li>
                     <li class="menu-item-has-children dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,7 +129,7 @@
                     </li>
 
                     <li class="active">
-                        <a href="index.html"> <i class="menu-icon fa fa-user"></i>پروفایل</a>
+                        <a href="{% url 'crm:support-profile' %}"> <i class="menu-icon fa fa-user"></i>پروفایل</a>
                     </li>
                     <li class="active">
                         <a href="index.html"> <i class="menu-icon fa fa-tags"></i>ارسال تیکت</a>

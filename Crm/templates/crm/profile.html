@@ -16,33 +16,42 @@
         {% csrf_token %}
 
         <div class="row">
-          <div class="col-6">
-            {{ form.brand_name|as_crispy_field }}
-          </div>
-          <div class="col-6">
-            {{ form.adress|as_crispy_field }}
-          </div>
-          {% comment %} <div class="col-12">
-            <label class="my-4">گذرواژه: </label>
-            <span>برای تغییر گذرواژه <a href="{% url 'password_change' %}">کلیک</a> کنید.</span>
-          </div> {% endcomment %}
-          <div class="col-6">
-            {{ form.province|as_crispy_field }}
-          </div>
-          <div class="col-6">
-            {{ form.city|as_crispy_field }}
-          </div>
-          {% comment %} <div class="col-6">
-            {{ form.phone|as_crispy_field }}
-          </div> {% endcomment %}
-          {% comment %} <div class="col-6">
-            {{ form.is_manager|as_crispy_field }}
-          </div>
-          <div class="col-6">
-            {{ form.is_customer|as_crispy_field }}
-          </div> {% endcomment %}
+          {% if user.is_manager or user.is_superuser %}
+            <div class="col-6">
+              {{ form.username|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.email|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.last_name|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.is_manager|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.is_customer|as_crispy_field }}
+            </div>
+          {% elif user.is_customer or user.is_superuser %}
+            <div class="col-6">
+              {{ form.brand_name|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.adress|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.province|as_crispy_field }}
+            </div>
+            <div class="col-6">
+              {{ form.city|as_crispy_field }}
+            </div>
+          {% endif %}
         </div>
         <button class="btn btn-success">ویرایش اطلاعات</button>
+      </form>
     </div>
 </div>
 {% endblock %}

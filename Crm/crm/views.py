@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
-# from django.http import Http404
+from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from .mixins import (
                       FormValidMixin,
@@ -16,7 +17,8 @@ from .mixins import (
                       UpdateFieldStage9Mixin,
                       Customer_ListView,
                       Genral_listView,
-                      Support_ListView
+                      Support_ListView,
+                      SupportAccessMixin
                     )
 # from django.urls import reverse_lazy
 from django.views.generic import (
@@ -28,7 +30,7 @@ from django.views.generic import (
 from .models import Project_procedure
 from customer.models import Customer
 from account.models import User
-from .forms import ProfileForm
+from .forms import CustomerProfileForm, SupportProfileForm
 
 # Create your views here.
 
@@ -143,21 +145,42 @@ class ProjectUpdate_stage9(AccessMixin, UpdateFieldStage9Mixin, FormValidMixin, 
   template_name = "crm/project_update_stage_9.html"
 
 
-def profile(request):
-    user = request.user
-    instance, created = Customer.objects.get_or_create(customer=user)
+@login_required
+def customer_profile(request):
+    if request.user.is_customer or request.user.is_superuser:
+      instance, created = Customer.objects.get_or_create(customer=request.user)
 
-    if request.method == 'POST':
-        form = ProfileForm(request.POST, instance=instance)
+      if request.method == 'POST':
+          form = CustomerProfileForm(request.POST, instance=instance)
 
-        if form.is_valid():
-            form.save()
-            return redirect('/')
+          if form.is_valid():
+              form.save()
+              return redirect('/')
+      else:
+          form = CustomerProfileForm(instance=instance)
+
+      context = {
+          'form': form,
+          'is_create': created,
+      }
+      return render(request, 'crm/profile.html', context)
     else:
-        form = ProfileForm(instance=instance)
-
-    context = {
-        'form': form,
-        'is_create': created,
-    }
-    return render(request, 'crm/profile.html', context)
+      raise Http404("You can't access this page.")
+      
+      
+class Support_profile(LoginRequiredMixin, SupportAccessMixin, UpdateView):
+  model = User
+  template_name = "crm/profile.html"
+  form_class = SupportProfileForm
+  success_url = reverse_lazy("crm:support-profile")
+  
+  def get_object(self):
+    return User.objects.get(pk = self.request.user.pk)
+  
+  def get_form_kwargs(self):
+    kwargs = super(Support_profile, self).get_form_kwargs()
+    kwargs.update({
+      "user": self.request.user
+    })
+    
+    return kwargs   

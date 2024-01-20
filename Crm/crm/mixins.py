@@ -194,3 +194,11 @@ class Support_ListView():
     context = super().get_context_data(**kwargs)
     context["User"] = User
     return context
+
+
+class SupportAccessMixin():
+  def dispatch(self, request, *args, **kwargs):
+    if request.user.is_manager or request.user.is_superuser:
+      return super().dispatch(request, *args,**kwargs)
+    else:
+      raise Http404("You can't see this page")
