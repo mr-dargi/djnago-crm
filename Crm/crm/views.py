@@ -33,10 +33,13 @@ from account.models import User
 from .forms import CustomerProfileForm, SupportProfileForm
 
 # Create your views here.
-
-# This view will show all the item in the project in one list
-class ProjectList(LoginRequiredMixin, Genral_listView, ListView):
-  template_name = "crm/index.html"
+# Dashboard
+def home(request):
+  context = {
+    "projects": Project_procedure.objects.filter(user=request.user).order_by("-created"),
+  }
+  
+  return render(request, "crm/index.html", context)
 
 
 # This view will show stage one item that i describe in database model in the list

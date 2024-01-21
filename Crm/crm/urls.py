@@ -1,6 +1,6 @@
 from django.urls import path, include
 from .views import (
-                      ProjectList,
+                      home,
                       ProjectList_stage1,
                       ProjectList_stage2,
                       ProjectList_stage3,
@@ -25,7 +25,7 @@ from .views import (
 
 app_name = "crm"
 urlpatterns = [
-  path("", ProjectList.as_view(), name="home"),
+  path("", home, name="home"),
   path("project/list/stage1", ProjectList_stage1.as_view(), name="ProjectList-stage1"),
   path("project/list/stage2", ProjectList_stage2.as_view(), name="ProjectList-stage2"),
   path("project/list/stage3", ProjectList_stage3.as_view(), name="ProjectList-stage3"),
