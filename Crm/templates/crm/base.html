@@ -124,20 +124,11 @@
         </div>
 
         <div class="col-sm-5">
-            <div class="user-area dropdown float-left">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <img class="user-avatar rounded-circle" src="{% static 'crm/images/admin.jpg' %}" alt="User Avatar">
+            <div class="user-area float-left">
+                <a href="{% url 'account:logout' %}" class="d-flex align-items-center">
+                    خروج
+                    <i class="fa fa-arrow-circle-left mr-2"></i>
                 </a>
-
-                <div class="user-menu dropdown-menu">
-                    <a class="nav-link" href="#"><i class="fa fa-user"></i> My Profile</a>
-
-                    <a class="nav-link" href="#"><i class="fa fa-user"></i> Notifications <span class="count">13</span></a>
-
-                    <a class="nav-link" href="#"><i class="fa fa-cog"></i> Settings</a>
-
-                    <a class="nav-link" href="#"><i class="fa fa-power-off"></i> Logout</a>
-                </div>
             </div>
         </div>
       </div>

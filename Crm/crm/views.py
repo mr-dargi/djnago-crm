@@ -34,6 +34,7 @@ from .forms import CustomerProfileForm, SupportProfileForm
 
 # Create your views here.
 # Dashboard
+@login_required
 def home(request):
   context = {
     "projects": Project_procedure.objects.filter(user=request.user).order_by("-created"),

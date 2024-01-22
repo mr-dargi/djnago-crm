@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "account.apps.AccountConfig",
     "customer.apps.CustomerConfig",
     "crm.apps.CrmConfig",
+    "tickets.apps.TicketsConfig",
 ]
 
 MIDDLEWARE = [
