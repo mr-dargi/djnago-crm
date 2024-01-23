@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.http import Http404
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.urls import reverse_lazy
 from .mixins import (
                       FormValidMixin,
@@ -30,6 +31,7 @@ from django.views.generic import (
 from .models import Project_procedure
 from customer.models import Customer
 from account.models import User
+from tickets.models import Ticket, Message
 from .forms import CustomerProfileForm, SupportProfileForm
 
 # Create your views here.
@@ -38,6 +40,7 @@ from .forms import CustomerProfileForm, SupportProfileForm
 def home(request):
   context = {
     "projects": Project_procedure.objects.filter(user=request.user).order_by("-created"),
+    "tickets": Ticket.objects.filter(Q(customer=request.user) | Q(support=request.user))
   }
   
   return render(request, "crm/index.html", context)
@@ -147,6 +150,24 @@ class ProjectUpdate_stage9(AccessMixin, UpdateFieldStage9Mixin, FormValidMixin, 
   model = Project_procedure
   success_url = reverse_lazy("crm:ProjectList-stage9")
   template_name = "crm/project_update_stage_9.html"
+  
+
+class Support_profile(LoginRequiredMixin, SupportAccessMixin, UpdateView):
+  model = User
+  template_name = "crm/profile.html"
+  form_class = SupportProfileForm
+  success_url = reverse_lazy("crm:support-profile")
+  
+  def get_object(self):
+    return User.objects.get(pk = self.request.user.pk)
+  
+  def get_form_kwargs(self):
+    kwargs = super(Support_profile, self).get_form_kwargs()
+    kwargs.update({
+      "user": self.request.user
+    })
+    
+    return kwargs
 
 
 @login_required
@@ -170,21 +191,3 @@ def customer_profile(request):
       return render(request, 'crm/profile.html', context)
     else:
       raise Http404("You can't access this page.")
-      
-      
-class Support_profile(LoginRequiredMixin, SupportAccessMixin, UpdateView):
-  model = User
-  template_name = "crm/profile.html"
-  form_class = SupportProfileForm
-  success_url = reverse_lazy("crm:support-profile")
-  
-  def get_object(self):
-    return User.objects.get(pk = self.request.user.pk)
-  
-  def get_form_kwargs(self):
-    kwargs = super(Support_profile, self).get_form_kwargs()
-    kwargs.update({
-      "user": self.request.user
-    })
-    
-    return kwargs   

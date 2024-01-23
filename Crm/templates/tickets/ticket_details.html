@@ -1,0 +1,19 @@
+<h1>Ticket Details</h1>
+
+<p>Subject: {{ ticket.subject }}</p>
+<p>Description: {{ ticket.description }}</p>
+
+<hr>
+
+{% for message in ticket.messages.all %}
+  <p>From: {{ message.sender.username }}</p>
+  <p>{{ message.content }}</p>
+  <p>Sent at: {{ message.created_at }}</p>
+  <hr>
+{% endfor %}
+
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Send</button>
+</form>
