@@ -6,6 +6,7 @@
 {% block main %}
   <div>
     <h1 class="dashboard_header">داشبورد</h1>
+    {% comment %} website status {% endcomment %}
     <div class="col-lg-8 mb-4">
       <div class="card-group">
          <div class="card col-md-6 no-padding ">
@@ -58,6 +59,7 @@
     </div>
 
 
+    {% comment %} Profile {% endcomment %}
     <div class="col-lg-4">
       <div class="card">
          <div class="card-header">
@@ -79,7 +81,9 @@
       </div>
    </div>
 
-   <div class="col-lg-6">
+
+   {% comment %} The last projects {% endcomment %}
+   <div class="col-lg-5">
     <div class="card">
        <div class="card-header d-flex justify-content-between">
           <strong class="card-title">چندین پروژه آخر</strong>
@@ -133,85 +137,104 @@
         </table>
        </div>
     </div>
-    <div class="col-lg-6">
-      <div class="card">
-         <div class="card-header d-flex justify-content-between">
-            <strong class="card-title">چندین پروژه آخر</strong>
-              <a class="d-flex align-items-center" href="{% url 'crm:projectCreate' %}">
-                ایجاد پروژه جدید
-                <span class="plus_icon mr-2">
-                  &#x2b;
-                </span>
-              </a>
-         </div>
-         <div class="card-body">
-          <table class="table">
-            <thead class="bg-dark text-white">
-              <tr>
-                <tr role="row">
-                  <th 
-                    class="sorting_asc text-center" 
-                    tabindex="0" 
-                    aria-controls="bootstrap-data-table-export" 
-                    rowspan="1" 
-                    colspan="1" 
-                    aria-sort="ascending" aria-label="Name: activate to sort column descending" 
-                    style="width: auto;">
-                    عنوان پروژه
-                  </th>
-                  <th 
-                    class="sorting_asc text-center" 
-                    tabindex="0" 
-                    aria-controls="bootstrap-data-table-export" 
-                    rowspan="1" 
-                    colspan="1" 
-                    aria-sort="ascending" aria-label="Name: activate to sort column descending" 
-                    style="width: auto;">
-                    زمان ثبت اولیه پروژه
-                  </th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for ticket in tickets %}
-                 
-                   <tr>
-                     <td>
-                       {{ ticket.customer }}
-                     </td>
-                     <td>
-                        {{ ticket.support }}
-                     </td>
-                     <td>
-                        {{ ticket.subject }}
-                      </td>
-                      <td>
-                         {{ ticket.created_at|naturaltime }}
-                      </td> 
-                   </tr>
-              {% endfor %}
-            </tbody>
-          </table>
-         </div>
-      </div>
  </div>
 
-   {% comment %} <div class="content col-lg-6">
-     <div class="animated fadeIn">
-       <div class="row">
-         <div class="">
-           <div class="card-header d-flex justify-content-between">
-             <strong class="card-title">لیست چندین پروژه آخر</strong>
-             <a href="{% url 'crm:projectCreate' %}">
-                ایجاد پروژه
-               <span class="plus_icon">
-                 &#x2b;
-               </span>
-             </a>
-           </div>
-   
-   
-       </div>
-     </div><!-- .animated -->
-   </div> {% endcomment %}
+ {% comment %} send messages for ticket {% endcomment %}
+ <div class="col-lg-7">
+  <div class="card">
+     <div class="card-header d-flex justify-content-between">
+        <strong class="card-title">تیکت های ارسال شده</strong>
+     </div>
+     <div class="card-body">
+      <table class="table">
+        <thead class="bg-dark text-white">
+          <tr>
+            <tr role="row">
+              <th 
+                class="sorting_asc text-center" 
+                tabindex="0" 
+                aria-controls="bootstrap-data-table-export" 
+                rowspan="1" 
+                colspan="1" 
+                aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                style="width: auto;">
+                 مشتری
+              </th>
+              <th 
+                class="sorting_asc text-center" 
+                tabindex="0" 
+                aria-controls="bootstrap-data-table-export" 
+                rowspan="1" 
+                colspan="1" 
+                aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                style="width: auto;">
+                پشتیبانی
+              </th>
+              <th 
+                class="sorting_asc text-center" 
+                tabindex="0" 
+                aria-controls="bootstrap-data-table-export" 
+                rowspan="1" 
+                colspan="1" 
+                aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                style="width: auto;">
+                موضوع
+              </th>
+              <th 
+                class="sorting_asc text-center" 
+                tabindex="0" 
+                aria-controls="bootstrap-data-table-export" 
+                rowspan="1" 
+                colspan="1" 
+                aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                style="width: auto;">
+                زمان ارسال
+              </th>
+              <th 
+                class="sorting_asc text-center" 
+                tabindex="0" 
+                aria-controls="bootstrap-data-table-export" 
+                rowspan="1" 
+                colspan="1" 
+                aria-sort="ascending" aria-label="Name: activate to sort column descending" 
+                style="width: auto;">
+                ارسال پیام
+              </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for ticket in tickets %}
+            <tr>
+              <td>
+                {{ ticket.customer }}
+              </td>
+              <td>
+                {% if ticket.support %}
+                  {{ ticket.support }}
+                {% else %}
+                  ....
+                {% endif %}
+              </td>
+              <td>
+                {{ ticket.subject }}
+              </td>
+              <td>
+                {{ ticket.created_at|naturaltime }}
+              </td>
+              <td>
+                <a href="{% url 'tickets:ticket_details' ticket_id=ticket.id %}">
+                  <span class="plus_icon mr-2">
+                    &#x2b;
+                  </span>
+                </a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+     </div>
   </div>
+</div>
+
+</div>
 {% endblock %}

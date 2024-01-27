@@ -1,6 +1,18 @@
+@font-face {
+  font-family: Sahel;
+  src: url('Sahel.eot');
+  src: url('Sahel.eot?#iefix') format('embedded-opentype'),
+       url('Sahel.woff2') format('woff2'),
+       url('Sahel.woff') format('woff'),
+       url('Sahel.ttf') format('truetype');
+  font-weight: normal;
+}
+
 body {
   text-align: right !important;
   direction: rtl !important;
+  font-family: "Sahel" !important;
+  font-size: 14px;
 }
 
 .header-menu {
@@ -132,4 +144,9 @@ label.form-check-label {
 
 .dashboard_header {
   margin-bottom: 80px;
+}
+
+.ticket-fonts {
+  font-family: "Sahel" !important;
+  font-size: 14px;
 }
