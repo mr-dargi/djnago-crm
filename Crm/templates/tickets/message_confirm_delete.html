@@ -9,10 +9,10 @@
 
 <form method="POST">
   {% csrf_token %}
-  <p>آیا شما {{message.content}}</p>
+  <p>آیا شما از حذف این متن "{{message.content}}" مطمئن هستید؟</p>
   <div>
-    <button type="submit">Yes, Delete</button>
-    <a href="{% url 'tickets:ticket_details' ticket_id=message.ticket.id %}">Cancel</a>
+    <button type="submit" class="btn btn-danger">بله</button>
+    <a href="{% url 'tickets:ticket_details' ticket_id=message.ticket.id %}" class="btn btn-success">لغو حذف</a>
   </div>
 </form>
 

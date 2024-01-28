@@ -36,9 +36,6 @@ class Project_procedure(models.Model):
   # ---------------------------------------- stage 5 -------------------------------------------------------------------- #
   confirm_design = models.BooleanField(default=False, verbose_name = "وضعیت طراحی")
   description_reject_design = models.TextField(blank=True, null=True, verbose_name = "دلیل رد کردن طراحی")
-  # timer_for_satisfaction = models.DateTimeField(default=timezone.now, verbose_name = "زمان پرسش سوال رضایتمندی از پروژه")
-  # ask_for_satisfaction = models.BooleanField(default=True, verbose_name = "وضعیت رضایتمندی")
-  # description_of_dissatisfaction = models.TextField(blank=True, null=True, verbose_name = "دلیل رد کردن طراحی")
   
   # ------------------------------ Description of project procedure model actor support ------------------------------ #
   # proposal -> proposal model is write dowm by support about project and invoice of project and it will send it to customer for comfirm or reject
