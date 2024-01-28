@@ -154,3 +154,7 @@ label.form-check-label {
 .message-card-header-self {
   background-color: #fbbe28;
 }
+
+.message-card-header-others {
+  background-color: #2d3a48;
+}

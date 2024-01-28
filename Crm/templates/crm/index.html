@@ -219,7 +219,7 @@
                 {{ ticket.subject }}
               </td>
               <td>
-                {{ ticket.created_at|naturaltime }}
+                {{ ticket.ticket_jcreate }}
               </td>
               <td>
                 <a href="{% url 'tickets:ticket_details' ticket_id=ticket.id %}">

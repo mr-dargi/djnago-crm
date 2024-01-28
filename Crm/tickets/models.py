@@ -15,6 +15,12 @@ class Ticket(models.Model):
     verbose_name = "تیکت"
     verbose_name_plural = "تیکت ها"
     ordering = ["-created_at"]
+    
+    
+  def ticket_jcreate(self):
+    return jalali_converter(self.created_at)
+  
+  ticket_jcreate.short_description = "زمان ثبت ارسال پیام"
 
 
 class Message(models.Model):
